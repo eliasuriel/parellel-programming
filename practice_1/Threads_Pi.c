@@ -63,14 +63,14 @@ int main(int argc, char *argv[]){
 
 
     for(int i=0; i<NUM_THREADS; i++){
-        pthread_create(&threads[i], NULL, Count, NULL);
+        pthread_create(&threads[i], NULL, contador, NULL);
     }
 
     for(int i=0; i<NUM_THREADS; i++){
         pthread_join(threads[i], NULL);
     }
 
-    double PI = 4.0*(double)circle_count/(double)npoints;
+    double PI = 4.0*(double)cont_circle/(double)npoints;
     end = clock();
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
     printf("PI = %f\nTime used=%f",PI, cpu_time_used);
