@@ -5,6 +5,9 @@ Elías Uriel Velázquez Rojas_A01639716
 Con apoyo de los siguientes repositorios:
 https://github.com/VictorRodriguez/operating-systems-lecture/blob/master/labs/04/pi.c
 https://github.com/VictorRodriguez/parallel-programming-lecture/blob/main/labs/04/practice1.c
+y de las siguiente páginas:
+http://selkie.macalester.edu/csinparallel/modules/MonteCarloSimulationExemplar/build/html/Threads/Threads_OMP.html
+https://www.geeksforgeeks.org/estimating-the-value-of-pi-using-monte-carlo-parallel-computing-method/
 */
 #include <pthread.h>
 #include <stdio.h>
@@ -12,7 +15,7 @@ https://github.com/VictorRodriguez/parallel-programming-lecture/blob/main/labs/0
 #include <math.h>
 #include <time.h>
 
-#define NUM_THREADS 75
+#define NUM_THREADS 1
 
 int puntos = 100000;
 int cont_circle = 0;
