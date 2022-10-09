@@ -2,7 +2,9 @@
 
 Elías Uriel Velázquez Rojas_A01639716
 
-
+Con apoyo de los siguientes repositorios:
+https://github.com/VictorRodriguez/operating-systems-lecture/blob/master/labs/04/pi.c
+https://github.com/VictorRodriguez/parallel-programming-lecture/blob/main/labs/04/practice1.c
 */
 #include <pthread.h>
 #include <stdio.h>
@@ -12,7 +14,7 @@ Elías Uriel Velázquez Rojas_A01639716
 
 #define NUM_THREADS 75
 
-int npoints = 100000;
+int puntos = 100000;
 int cont_circle = 0;
 double radio=1;
 
@@ -65,7 +67,7 @@ int main(int argc, char *argv[]){
     seed = time(NULL);
 
     pthread_t threads[NUM_THREADS];
-    pointsThread= npoints/NUM_THREADS;
+    pointsThread= puntos/NUM_THREADS;
 
     int i;
     for( i=0; i<NUM_THREADS; i++){
@@ -76,9 +78,9 @@ int main(int argc, char *argv[]){
         pthread_join(threads[a], NULL);
     }
 
-    double PI = 4.0*(double)cont_circle/(double)npoints;
+    double PI = 4.0*(double)cont_circle/(double)puntos;
     end = clock();
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
-    printf("PI = %f\nTime used=%f",PI, cpu_time_used);
+    printf("PI = %f\nTime used=%f\n",PI, cpu_time_used);
     pthread_mutex_destroy(&lock);
 }
