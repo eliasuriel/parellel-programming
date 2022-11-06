@@ -60,31 +60,29 @@ int main(int argc, char** argv) {
       printf("\n");
     }
     printf("\n");
-    int Nr = sizeof(A)/sizeof(A[0]);
-    int Nc = sizeof(A[0]) / sizeof(A[0][0]);
-    int Mr = sizeof(B)/sizeof(B[0]);
-    int Mc = sizeof(B[0]) / sizeof(B[0][0]);
+    int RowN = sizeof(A)/sizeof(A[0]);
+    int ColN = sizeof(A[0]) / sizeof(A[0][0]);
+    int Rowm = sizeof(B)/sizeof(B[0]);
+    int ColM = sizeof(B[0]) / sizeof(B[0][0]);
     int i,j,k;
-    if (Nc != Mr) {
+    if (ColN != Rowm) {
       printf("Column of first matrix should be equal to row of second matrix");
         
     }
     else{ 
         int C[N][N]={};
         #pragma omp parallel for private(i,j,k) shared (A, B, C)
-        for (i = 0; i < Nr; ++i) {
-            for (j = 0; j < Mc; ++j) {
-                for (k = 0; k < Mr; ++k) {
+        for (i = 0; i < RowN; ++i) {
+            for (j = 0; j < ColM; ++j) {
+                for (k = 0; k < Rowm; ++k) {
                     C[i][j] += A[i][k] * B[k][j];
                 }
             }
         }
-        int RowC = sizeof(C) / sizeof(C[0]);
-        int ColC =  sizeof(C[0]) / sizeof(C[0][0]);
         printf("Matrix C ");
         printf("\n");
-        for(int i = 0; i < Nr; i++){
-            for(int j = 0; j < Mc; j++){
+        for(int i = 0; i < RowN; i++){
+            for(int j = 0; j < ColM; j++){
                 printf("%d\t",C[i][j]);
             }
             printf("\n");
