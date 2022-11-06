@@ -1,3 +1,12 @@
+/*  
+Elías Uriel Velázquez Rojas 
+A01639716
+
+Este codigo se realizo con la ayuda de:
+https://www.tutorialspoint.com/matrix-multiplication-algorithm#
+https://github.com/VictorRodriguez/parallel-programming-lecture/blob/main/labs/07/trapezoidal_omp_1.c
+
+*/
 #include <omp.h>
 #include <stdio.h>
 #include <stdlib.h>
