@@ -1,2 +1,2 @@
 all:
-  gcc Proyecto.c -o Proyecto -lpthread -lm
+  gcc air_condition.c -o Proyecto -fopenmp -lpthread -lm
