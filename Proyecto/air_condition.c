@@ -103,7 +103,7 @@ int main(int argc, char *argv[]) {
 
     srand(time(NULL));
     
-    for(long c = 0;  c< NUM_THREADS; c++){
+    for(long c = 0;  c< threadcnt; c++){
       printf("thread: %ld\n", c);
       rc = pthread_create(&threads[c], NULL, LenaTempM, (void*) c);
       if (rc){  
