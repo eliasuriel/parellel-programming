@@ -97,9 +97,9 @@ int main(int argc, char *argv[]) {
     }
     pthread_t threads[threadcnt];
     
-    //omp_set_num_threads(threadcnt);
+    omp_set_num_threads(threadcnt);
     // Checando que el omp esta definido
-    //printf("OMP defined, threadcr = %d\n", threadcnt);
+    printf("OMP defined, threadcr = %d\n", threadcnt);
 
     srand(time(NULL));
     
@@ -128,19 +128,20 @@ int main(int argc, char *argv[]) {
     float delta_t = (pow(delta_x, 2))/(4 * alpha);
     float gamma = (alpha * delta_t) / (delta_x*delta_x);
     int u[max_iter_time][N][F];
+    int k,i,j;
 
     #pragma omp parallel for private(k, i, j) shared (u, TempMatrix)
-    for(int k = 0; k < max_iter_time; k++){
-        for(int i = 0; i < N; i++){
-            for(int j = 0; j < F; j++){
+    for( k = 0; k < max_iter_time; k++){
+        for( i = 0; i < N; i++){
+            for( j = 0; j < F; j++){
                 u[k][i][j] = TempMatrix[i][j];
             }
         }
     }
     #pragma omp parallel for private(k, i, j) shared (u)
-    for(int k = 0; k < max_iter_time - 1; k++){
-        for(int i = 1; i < N - 1; i+= delta_x){
-            for(int j = 1; j < F - 1; j+= delta_x){
+    for( k = 0; k < max_iter_time - 1; k++){
+        for( i = 1; i < N - 1; i+= delta_x){
+            for( j = 1; j < F - 1; j+= delta_x){
                 u[k + 1][i][j] = gamma * (u[k][i+1][j] + u[k][i-1][j] + u[k][i][j+1] + u[k][i][j-1] - 4*u[k][i][j]) + u[k][i][j];
             }
         }
