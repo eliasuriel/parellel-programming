@@ -48,8 +48,8 @@ void  MatrizCompleta(){
 void* LenaTempM(void* arg){
     
     while(true){
-        int x = rand()%6;
-        int y =rand()%7;
+        int x = rand()%N;
+        int y =rand()%F;
         if(arg == 0){
             MatrizCompleta();
         }
